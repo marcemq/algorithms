@@ -9,8 +9,17 @@ A set of implemented algorithms and programming exercises. General content:
 * python3 or newer
 
 # Usage
-All `.py` files have a main funtion that will execute a small test for it, e.g:
+Most all `.py` files have a main funtion that will execute a small test for it, e.g:
 ```
-> cd programming
+> git clone https://github.com/marcemq/algorithms.git
+> cd algorithms/programming
 > python runningMedian.py
 ```
+# Contribution
+* Fork [algorithms](https://github.com/marcemq/algorithms)
+* Make changes
+* Send pull request
+* Thank you
+
+# Author
+[@marcemq](https://github.com/marcemq)
