@@ -4,32 +4,22 @@ class Heap():
     """Heap class to manange minHeap and maxHeap.
     @typeHeapFlag: true refers a minHeap by default or maxHeap otherwise"""
     def __init__(self, typeHeapFlag=None):
-        if typeHeapFlag == None:
-            self.typeHeapFlag = True
-        else:
-            self.typeHeapFlag = typeHeapFlag
+        self.typeHeapFlag = True if typeHeapFlag == None else typeHeapFlag
         self.items = []
 
     def __getLeftChildIndex(self, parentIndex): return 2*parentIndex + 1
     def __getRightChildIndex(self, parentIndex): return 2*parentIndex + 2
     def __getParentIndex(self, childIndex): return (childIndex - 1) // 2
 
-    def __hasLeftChild(self, index):
-        return self.__getLeftChildIndex(index) < len(self.items)
-    def __hasRihtChild(self, index):
-        return self.__getRightChildIndex(index) < len(self.items)
-    def __hasParent(self, index):
-        return self.__getParentIndex(index) >= 0
+    def __hasLeftChild(self, index): return self.__getLeftChildIndex(index) < len(self.items)
+    def __hasRihtChild(self, index): return self.__getRightChildIndex(index) < len(self.items)
+    def __hasParent(self, index): return self.__getParentIndex(index) >= 0
 
-    def __getLeftChild(self, index):
-        return self.items[self.__getLeftChildIndex(index)]
-    def __getRightChild(self, index):
-        return self.items[self.__getRightChildIndex(index)]
-    def __getParent(self, index):
-        return self.items[self.__getParentIndex(index)]
+    def __getLeftChild(self, index): return self.items[self.__getLeftChildIndex(index)]
+    def __getRightChild(self, index): return self.items[self.__getRightChildIndex(index)]
+    def __getParent(self, index): return self.items[self.__getParentIndex(index)]
 
-    def __swap(self, i, j):
-        self.items[i], self.items[j] = self.items[j], self.items[i]
+    def __swap(self, i, j): self.items[i], self.items[j] = self.items[j], self.items[i]
 
     def __outOfOrder(self, index):
         if self.typeHeapFlag:
