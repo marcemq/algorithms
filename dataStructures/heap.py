@@ -86,7 +86,7 @@ class Heap():
 
     def getType(self): return self.typeHeapFlag
     def getItems(self): return self.items
-    def getLen(self): return len(items)
+    def getLen(self): return len(self.items)
 
 if __name__ == "__main__":
     data = [10, 15, 20, 17, 25]
