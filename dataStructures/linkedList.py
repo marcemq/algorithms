@@ -11,23 +11,48 @@ class LinkedList():
     def __init__(self, head=None):
         self.head = head
 
+    def __traverseNthFromHead(self, n):
+        count = 0
+        nodeit = self.head
+        while nodeit.next != None and count < n:
+            nodeit = nodeit.next
+            count += 1
+        return nodeit
+
+    def __traverseToEnd(self):
+        nodeit = self.head
+        while nodeit.next != None:
+            nodeit = nodeit.next
+        return nodeit
+
     def insertFirst(self, data):
+        self.insertNth(data, 0)
+
+    def insertLast(self, data):
+        self.insertNth(data)
+
+    def insertNth(self, data, n=None):
         if self.head:
             node = Node(data)
-            node.next = self.head
-            self.head = node
+            if n == 0:
+                node.next, self.head = self.head, node
+            else:
+                count = 0
+                nodeit = self.__traverseNthFromHead(n-1) if n!=None else self.__traverseToEnd()
+                node.next, nodeit.next = nodeit.next, node
         else:
             self.head = Node(data)
 
-    def insertLast(self, data):
+    def deleteNth(self, n):
         if self.head:
-            node = Node(data)
-            nodeit = self.head
-            while nodeit.next != None:
-                nodeit = nodeit.next
-            nodeit.next = node
+            if n == 0:
+                self.head  = self.head.next
+            else:
+                count = 0
+                nodeit = self.__traverseNthFromHead(n-1)
+                nodeit.next = nodeit.next.next
         else:
-            self.head = Node(data)
+            print("Linked List is empty")
 
     def printList(self):
         node = self.head
@@ -45,3 +70,7 @@ if __name__ == "__main__":
         y.insertLast(data[i])
     x.printList()
     y.printList()
+    x.insertNth(-1, 3)
+    x.printList()
+    x.deleteNth(5)
+    x.printList()
