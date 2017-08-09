@@ -17,6 +17,8 @@ class LinkedList():
         while nodeit.next != None and count < n:
             nodeit = nodeit.next
             count += 1
+        if n-count > 1:
+            print("Given Nth outOfRange, returning last node in list:", end=" ")
         return nodeit
 
     def __traverseToEnd(self):
@@ -61,6 +63,10 @@ class LinkedList():
             node = node.next
         print()
 
+    def getNodeNth(self, n):
+        nodeit = self.__traverseNthFromHead(n)
+        return nodeit.data
+
 if __name__ == "__main__":
     x = LinkedList()
     y = LinkedList()
@@ -74,3 +80,5 @@ if __name__ == "__main__":
     x.printList()
     x.deleteNth(5)
     x.printList()
+    print("{}".format(x.getNodeNth(2)))
+    print("{}".format(x.getNodeNth(10)))
