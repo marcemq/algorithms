@@ -26,29 +26,32 @@ class Node():
         else:
             self.data = data
 
-    def inOrderTraversal(self):
+    def inOrderTraversal(self, strTraversal=[]):
         """Traversal tree content inorder """
         if self.left:
             self.left.inOrderTraversal()
-        print(self.data, end=" ")
+        strTraversal.append(str(self.data))
         if self.right:
             self.right.inOrderTraversal()
+        return " ".join(strTraversal)
 
-    def preOrderTraversal(self):
+    def preOrderTraversal(self, strTraversal=[]):
         """Traversal tree content preorder """
-        print(self.data, end=" ")
+        strTraversal.append(str(self.data))
         if self.left:
             self.left.preOrderTraversal()
         if self.right:
             self.right.preOrderTraversal()
+        return " ".join(strTraversal)
 
-    def postOrderTraversal(self):
+    def postOrderTraversal(self, strTraversal=[]):
         """Traversal tree content postorder """
         if self.left:
             self.left.postOrderTraversal()
         if self.right:
             self.right.postOrderTraversal()
-        print(self.data, end=" ")
+        strTraversal.append(str(self.data))
+        return " ".join(strTraversal)
 
 
 if __name__ == "__main__":
@@ -56,6 +59,6 @@ if __name__ == "__main__":
     root.insert(3)
     root.insert(10)
     root.insert(1)
-    root.inOrderTraversal(), print()
-    root.preOrderTraversal(), print()
-    root.postOrderTraversal(), print()
+    print(root.inOrderTraversal())
+    print(root.preOrderTraversal())
+    print(root.postOrderTraversal())
