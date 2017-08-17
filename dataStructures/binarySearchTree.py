@@ -53,12 +53,22 @@ class Node():
         strTraversal.append(str(self.data))
         return " ".join(strTraversal)
 
+    def getTreeHeight(self):
+        """Return tree height """
+        if not self.left and not self.right:
+            return 0
+        else:
+            heightLeft = self.left.getTreeHeight() if self.left else 0
+            heightRight = self.right.getTreeHeight() if self.right else 0
+            return max(heightLeft, heightRight) + 1
+
 
 if __name__ == "__main__":
     root = Node(8)
     root.insert(3)
     root.insert(10)
     root.insert(1)
+    root.insert(4)
     print(root.inOrderTraversal())
-    print(root.preOrderTraversal())
-    print(root.postOrderTraversal())
+    height = root.getTreeHeight()
+    print("Tree height:{}".format(height))
