@@ -5,13 +5,13 @@ class Node():
     Tree node: holds a left and right childs along with data
     """
     def __init__(self, data=None):
-        """Node constructor """
+        """ Node constructor """
         self.data = data
         self.left = None
         self.right = None
 
     def insert(self, data):
-        """Insert new node with data """
+        """ Insert new node with data """
         if self.data:
             if data < self.data:
                 if self.left:
@@ -27,7 +27,7 @@ class Node():
             self.data = data
 
     def inOrderTraversal(self, strTraversal=[]):
-        """Traversal tree content inorder """
+        """ Traversal tree content inorder """
         if self.left:
             self.left.inOrderTraversal()
         strTraversal.append(str(self.data))
@@ -36,7 +36,7 @@ class Node():
         return " ".join(strTraversal)
 
     def preOrderTraversal(self, strTraversal=[]):
-        """Traversal tree content preorder """
+        """ Traversal tree content preorder """
         strTraversal.append(str(self.data))
         if self.left:
             self.left.preOrderTraversal()
@@ -45,7 +45,7 @@ class Node():
         return " ".join(strTraversal)
 
     def postOrderTraversal(self, strTraversal=[]):
-        """Traversal tree content postorder """
+        """ Traversal tree content postorder """
         if self.left:
             self.left.postOrderTraversal()
         if self.right:
@@ -63,12 +63,23 @@ class Node():
             return max(heightLeft, heightRight) + 1
 
 
+def traversalByLevel(nodeIni, strLevelTraversal=[]):
+    """ Traversal tree content by level starting at given node """
+    nextToVisit = list()
+    nextToVisit.append(nodeIni)
+    while nextToVisit:
+        node = nextToVisit.pop(0)
+        strLevelTraversal.append(str(node.data))
+        if node.left: nextToVisit.append(node.left)
+        if node.right: nextToVisit.append(node.right)
+    return " ".join(strLevelTraversal)
+
 if __name__ == "__main__":
     root = Node(8)
     root.insert(3)
     root.insert(10)
     root.insert(1)
     root.insert(4)
-    print(root.inOrderTraversal())
-    height = root.getTreeHeight()
-    print("Tree height:{}".format(height))
+    print("In Order Traversal: {}".format(root.inOrderTraversal()))
+    print("Tree height:{}".format(root.getTreeHeight()))
+    print("Traversal by Level from root: {}".format(traversalByLevel(root)))
