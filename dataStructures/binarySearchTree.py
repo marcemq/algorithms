@@ -53,17 +53,8 @@ class Node():
         strTraversal.append(str(self.data))
         return " ".join(strTraversal)
 
-    def getTreeHeight(self):
-        """Return tree height """
-        if not self.left and not self.right:
-            return 0
-        else:
-            heightLeft = self.left.getTreeHeight() if self.left else 0
-            heightRight = self.right.getTreeHeight() if self.right else 0
-            return max(heightLeft, heightRight) + 1
-
     def traversalByLevel(self, strLevelTraversal=[]):
-        """ """
+        """ Traversal tree content by level starting at root node """
         nextToVisit = list()
         nextToVisit.append(self)
         while nextToVisit:
@@ -72,6 +63,15 @@ class Node():
             if node.left: nextToVisit.append(node.left)
             if node.right: nextToVisit.append(node.right)
         return " ".join(strLevelTraversal)
+
+    def getTreeHeight(self):
+        """ Return tree height """
+        if not self.left and not self.right:
+            return 0
+        else:
+            heightLeft = self.left.getTreeHeight() if self.left else 0
+            heightRight = self.right.getTreeHeight() if self.right else 0
+            return max(heightLeft, heightRight) + 1
 
 if __name__ == "__main__":
     root = Node(8)
