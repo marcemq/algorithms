@@ -1,4 +1,5 @@
 #!/usr/bin/python
+from functools import lru_cache
 
 def recFibonacci(n):
     """Recursive Fibonacci function. """
@@ -27,6 +28,13 @@ def itFibonacci(n):
         i += 1
     return a
 
+@lru_cache(maxsize=None)
+def dynFibonacci(n):
+    """Recursive fibonacci with memoization from the stdlib."""
+    if n < 2:
+        return n
+    return dynFibonacci(n-1) + dynFibonacci(n-2)
+
 if __name__ == "__main__":
     n = int(input())
     nemo = [0] * (n+1)
@@ -35,4 +43,6 @@ if __name__ == "__main__":
     fn = itFibonacci(n)
     print(fn)
     fn = nemoFibonacci(n, nemo)
+    print(fn)
+    fn = dynFibonacci(n)
     print(fn)
