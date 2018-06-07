@@ -1,4 +1,12 @@
 #!/usr/bin/python
+from time import time
+
+def stopwatch(func, *args, **kwargs):
+    ini = time()
+    val = func(*args, **kwargs)
+    fin = time()
+
+    print('Got {} from {} in {}s'.format(val, func.__name__, fin-ini))
 
 def recFibonacci(n):
     """Recursive Fibonacci function. """
@@ -30,9 +38,7 @@ def itFibonacci(n):
 if __name__ == "__main__":
     n = int(input())
     nemo = [0] * (n+1)
-    fn = recFibonacci(n)
-    print(fn)
-    fn = itFibonacci(n)
-    print(fn)
-    fn = nemoFibonacci(n, nemo)
-    print(fn)
+
+    stopwatch(recFibonacci, n)
+    stopwatch(itFibonacci, n)
+    stopwatch(nemoFibonacci, n, nemo)
